@@ -6,6 +6,8 @@ import Header from './Header'
 import Footer from './Footer'
 import Customer from './components/forms/Customer'
 import InvoiceForm from './components/forms/InvoiceForm'
+import InvoiceComponent from './components/Invoice'
+import Homepage from './components/Homepage'
 
 const App = () => {
   return (
@@ -17,6 +19,9 @@ const App = () => {
           <Route path='/product/form/' element={<Customer/>}/>
           <Route path='/product/form/' element={<ProductForm/>}/>
           <Route path='/invoice/form/' element={<InvoiceForm/>}/>
+          <Route path='/invoice/' element={<InvoiceComponent/>}/>
+          <Route path='/invoice/:id/' element={<InvoiceComponent/>}/>
+          <Route path='/' element={<Homepage/>}/>
       </Routes>
      </Box>
      <Footer/>

@@ -3,10 +3,9 @@ import {
     FormControl,
     FormLabel,
     useToast,
-    Input,
+    Select,
     Heading,
     Button,
-    Box,
     Flex,
   } from '@chakra-ui/react'
 import axiosInstance from '../../utils/axiosInstance'
@@ -46,9 +45,7 @@ const InvoiceForm = () => {
 
     },[])
 
-        console.log(customerOption)
-        console.log(companyOption)
-        console.log(productOption)
+       
     const handleChange =  (e) => {
         const {name, value} = e.target;
         setInvoiceFormData({
@@ -65,12 +62,16 @@ const InvoiceForm = () => {
         customer:invoiceFormData.customer,
         }
         
-        
+        console.log(data)
         try {
-            const response = await axiosInstance.post('company/create/', data);
+            const response = await axiosInstance.post('invoice/create/', data,
+          {  headers: {
+              'Content-Type': 'multipart/form-data',
+            },}
+            );
             if(response.data){
                 toast({
-                    title: 'Seller Entry created successfull.',
+                    title: 'Invoice Entry created successfull.',
                     status: 'success',
                     position:'top-right',
                     duration: 5000,
@@ -91,27 +92,41 @@ const InvoiceForm = () => {
 
   return (
     <Flex mx={'auto'} mt={'5%'} p={5} direction={'column'} justifyContent={'center'} boxShadow={'md'}  maxW={{md:'md', lg:'lg'}}>
-         {/* <Heading mx={'auto'} color={'blackAlpha.400'} size={'lg'}> Seller Form</Heading>
+        <Heading mx={'auto'} color={'blackAlpha.400'} size={'lg'}> Seller Form</Heading>
 <FormControl>
-  <FormLabel>Seller Name</FormLabel>
-  <Input type='text' name='seller_name' value={} onChange={handleChange} />
+  <FormLabel>Product Name</FormLabel>
+  <Select  name='product_name'  value={invoiceFormData.product_name} onChange={handleChange}>
+  <option default>Select Product</option>
+  {productOption.map(product=>(
+     <option key={product.id} value={product.id}>{product.product_name}</option>
+  ))}
+    </Select> 
 </FormControl>
 
 <FormControl>
-  <FormLabel>Seller Address</FormLabel>
-  <Input type='text' name='seller_address' value={} onChange={handleChange} />
+  <FormLabel>Customer Name</FormLabel>
+  <Select name='customer'  onChange={handleChange} value={invoiceFormData.customer}>
+  <option default>Select Customer</option>
+  {customerOption.map(customer=>(
+     <option key={customer.id} value={customer.id} >{customer.customer_name}</option>
+  ))}
+    </Select> 
 </FormControl>
 
 <FormControl>
-  <FormLabel>Mobile No</FormLabel>
-  <Input type='text'  name='mobile_no' maxLength={10} value={} onChange={handleChange} />
+  <FormLabel>Company Name</FormLabel>
+  <Select name='company_name' onChange={handleChange} value={invoiceFormData.company_name}>
+  <option default>Select Company</option>
+  {companyOption.map(company=>(
+     <option key={company.id} value={company.id} >{company.seller_name}</option>
+  ))}
+    </Select> 
 </FormControl>
 
-<FormControl>
-  <FormLabel>Email</FormLabel>
-  <Input type='email' name='email' value={} onChange={handleChange} />
-</FormControl>
-<Button onClick={handleSubmit} bg={'teal.400'} _hover={{bg:'teal.600'}} color={'white'}  mt={2}>Save Seller</Button> */}
+
+
+
+<Button onClick={handleSubmit} bg={'teal.400'} _hover={{bg:'teal.600'}} color={'white'}  mt={2}>Save Invoice</Button>
     </Flex>
   )
 }

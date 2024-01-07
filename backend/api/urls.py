@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from api.views import (
 CustomerCreateView, ProductCreateView, InvoiceCreateView, CompanyCreateView,
-CustomerListView, ProductListView, InvoiceListView, CompanyListView,
+CustomerListView, ProductListView, InvoiceListView, CompanyListView,SingleInvoiceView,
 CustomerUpdateView, ProductUpdateView, InvoiceUpdateView, CompanyUpdateView,
 CustomerDeleteView, ProductDeleteView, InvoiceDeleteView, CompanyDeleteView
 )
@@ -13,6 +13,7 @@ urlpatterns = [
   path('invoice/create/', InvoiceCreateView.as_view() , name='invoice-create'),
   path('company/create/', CompanyCreateView.as_view() , name='company-create'),
 
+  path('invoice/<int:pk>/', SingleInvoiceView.as_view() , name='invoice-list'),
   path('customer/list/', CustomerListView.as_view() , name='customer-list'),
   path('product/list/', ProductListView.as_view() , name='product-list'),
   path('invoice/list/', InvoiceListView.as_view() , name='invoice-list'),
