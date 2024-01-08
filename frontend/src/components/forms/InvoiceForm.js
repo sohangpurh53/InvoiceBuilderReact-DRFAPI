@@ -92,7 +92,7 @@ const InvoiceForm = () => {
 
   return (
     <Flex mx={'auto'} mt={'5%'} p={5} direction={'column'} justifyContent={'center'} boxShadow={'md'}  maxW={{md:'md', lg:'lg'}}>
-        <Heading mx={'auto'} color={'blackAlpha.400'} size={'lg'}> Seller Form</Heading>
+        <Heading mx={'auto'} color={'blackAlpha.400'} size={'lg'}> Invoice Form</Heading>
 <FormControl>
   <FormLabel>Product Name</FormLabel>
   <Select  name='product_name'  value={invoiceFormData.product_name} onChange={handleChange}>

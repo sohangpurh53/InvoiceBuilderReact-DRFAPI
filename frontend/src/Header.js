@@ -30,7 +30,10 @@ const Header = () => {
     <Box as="header" bg="blue.500" color="white" px={4} py={3}>
       <Flex alignItems="center" mr={5}>
         <Heading size="md" mr={4}>
+          <Link _hover={{textDecoration:'none'}} href='/'>
           Invoice Builder
+          </Link>
+          
         </Heading>
         <Spacer />
         <Flex display={{ base: 'none', md: 'flex' }} alignItems="center">
@@ -41,12 +44,10 @@ const Header = () => {
             <Link href="/invoice/all/" color="white">
               Invoices
             </Link>
-            <Link href="#" color="white">
-              Settings
-            </Link>
+          
           </Stack>
           <Button ml={5} onClick={toggleColorMode} leftIcon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}>
-            Toggle {colorMode === 'dark' ? 'Light' : 'Dark'} Mode
+            {colorMode === 'dark' ? 'Light' : 'Dark'} Mode
           </Button>
         </Flex>
         <IconButton
@@ -69,7 +70,7 @@ const Header = () => {
               <Link href="/" color="blue.500">
                 Home
               </Link>
-              <Link href="#" color="blue.500">
+              <Link href="/invoice/all/" color="blue.500">
                 Invoices
               </Link>
               <Link href="#" color="blue.500">
@@ -80,7 +81,7 @@ const Header = () => {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-      <Button display={{lg:'none', md:'block'}} onClick={toggleColorMode} leftIcon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}>
+      <Button  display={{lg:'none', md:'block'}} onClick={toggleColorMode} leftIcon={colorMode === 'dark' ? <SunIcon  /> : <MoonIcon />}>
              {colorMode === 'dark' ? 'Light' : 'Dark'}
           </Button>
     </Box>

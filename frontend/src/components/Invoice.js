@@ -1,4 +1,4 @@
-import { Box, Heading, Table, Thead, Tbody, Tfoot, Tr, Th, Td, VStack, Text, Button } from '@chakra-ui/react';
+import { Box, Heading, Table, Thead, Tbody, Tfoot, Tr, Th, Td, VStack, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../utils/axiosInstance';
@@ -36,7 +36,7 @@ useEffect(() => {
           }
         }, [invoiceData.products]);
     
-console.log(totalAmount)
+
     
     // if (Array.isArray(invoiceData.products)) {
     //   const total_Amount = invoiceData.products.reduce((total, product) => {
@@ -56,6 +56,7 @@ console.log(totalAmount)
     <Box >
       <Heading>Invoice</Heading>
       <VStack  spacing={6}>
+      <Heading color={'gray.500'} size={'md'}>Invoice No {invoiceData.invoice_number}</Heading>
         <Box>
           <Heading size="md">Customer Details</Heading>
           <Table variant="simple">

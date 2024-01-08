@@ -3,6 +3,7 @@ import axiosInstance from '../utils/axiosInstance'
 import { Box, Text, Button, Flex } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
+
 const ListAllInvoices = () => {
     const [allInvoicesDisplay, setAllInvoiceDisplay] = useState([])
 
@@ -18,9 +19,9 @@ const ListAllInvoices = () => {
       fetchData()
     }, [])
 
-    console.log(allInvoicesDisplay)
+   
   return (
-    <Flex >
+    <Flex wrap={'wrap'}>
       {allInvoicesDisplay.map(invoice=>(
       <Box maxW={'300px'} padding={3} key={invoice.id} mt={10} ml={4} mb={2} w={'25%'} boxShadow={'md'}>
        <Text mx={4} fontWeight={'bold'}  >

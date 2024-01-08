@@ -23,6 +23,7 @@ const App = () => {
           <Route path='/invoice/' element={<InvoiceComponent/>}/>
           <Route path='/invoice/:id/' element={<InvoiceComponent/>}/>
           <Route path='/invoice/all/' element={<ListAllInvoices/>}/>
+          <Route path='/' element={<Homepage/>}/>
       </Routes>
      </Box>
      <Footer/>

@@ -6,7 +6,6 @@ import {
     Input,
     Heading,
     Button,
-    Box,
     Flex,
   } from '@chakra-ui/react'
 import axiosInstance from '../../utils/axiosInstance'
@@ -64,7 +63,7 @@ const CompanyForm = () => {
 
   return (
     <Flex mx={'auto'} mt={'5%'} p={5} direction={'column'} justifyContent={'center'} boxShadow={'md'}  maxW={{md:'md', lg:'lg'}}>
-         <Heading mx={'auto'} color={'blackAlpha.400'} size={'lg'}> Seller Form</Heading>
+         <Heading mx={'auto'} color={'blackAlpha.400'} size={'lg'}> Company Form</Heading>
 <FormControl>
   <FormLabel>Seller Name</FormLabel>
   <Input type='text' name='seller_name' value={sellerFormData.seller_name} onChange={handleChange} />

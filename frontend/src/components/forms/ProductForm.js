@@ -6,7 +6,7 @@ import {
     Input,
     Heading,
     Button,
-    Box,
+   
     Flex,
   } from '@chakra-ui/react'
 import axiosInstance from '../../utils/axiosInstance'
@@ -34,7 +34,7 @@ const ProductForm = () => {
             product_price:productFormData.product_price,
             product_quantity:productFormData.product_quantity,
         }
-        console.log(data)
+        
         
         try {
             const response = await axiosInstance.post('product/create/', data);

@@ -6,7 +6,7 @@ import {
     Input,
     Heading,
     Button,
-    Box,
+    
     Flex,
   } from '@chakra-ui/react'
 import axiosInstance from '../../utils/axiosInstance'
