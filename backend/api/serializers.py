@@ -40,3 +40,20 @@ class SingleInvoiceSerializer(serializers.ModelSerializer):
         serialized_products = ProductSerializer(products, many=True).data
         return serialized_products  # Exclude 'invoice_number'
        
+
+
+#lis all invoices
+class ListAllInvoiceSerializer(serializers.ModelSerializer):
+    company_name = CompanySerializer(read_only=True)
+    customer = CustomerSerializer(read_only=True)
+    products = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = invoice
+        fields = ['date', 'id', 'customer', 'company_name', 'products', 'invoice_number']
+
+    def get_products(self, obj):
+        products = obj.product_name.all()  # Retrieve all related products for the invoice
+        serialized_products = ProductSerializer(products, many=True).data
+        return serialized_products  # Exclude 'invoice_number''
+    

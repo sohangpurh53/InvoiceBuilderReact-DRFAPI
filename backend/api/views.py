@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.permissions import IsAdminUser
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateAPIView, DestroyAPIView, RetrieveAPIView
 from api.models import company_detail, customer, invoice, Product
-from api.serializers import CompanySerializer, CustomerSerializer, ProductSerializer, InvoiceSerializer,SingleInvoiceSerializer
+from api.serializers import CompanySerializer, CustomerSerializer, ProductSerializer, InvoiceSerializer,SingleInvoiceSerializer,ListAllInvoiceSerializer
 
 # Create your views here.
 
@@ -28,7 +28,7 @@ class CustomerListView(ListAPIView):
 
 class InvoiceListView(ListAPIView):
     queryset = invoice.objects.all()
-    serializer_class = InvoiceSerializer
+    serializer_class = ListAllInvoiceSerializer
 
 class ProductListView(ListAPIView):
     queryset = Product.objects.all()

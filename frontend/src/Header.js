@@ -38,7 +38,7 @@ const Header = () => {
             <Link href="/" color="white">
               Home
             </Link>
-            <Link href="#" color="white">
+            <Link href="/invoice/all/" color="white">
               Invoices
             </Link>
             <Link href="#" color="white">
