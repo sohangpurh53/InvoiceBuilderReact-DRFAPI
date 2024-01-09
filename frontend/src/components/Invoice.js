@@ -1,8 +1,10 @@
-import { Box, Heading, Table, Thead, Tbody, Tfoot, Tr, Th, Td, VStack, Text } from '@chakra-ui/react';
+import { Box, Heading, Button, Table, Thead, Tbody, Tfoot, Tr, Th, Td, VStack, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axiosInstance from '../utils/axiosInstance';
 import { useAuth } from './context/AuthContext';
+import React, { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
 function InvoiceComponent() {
     const {id} = useParams()
@@ -36,6 +38,12 @@ function InvoiceComponent() {
         
     },[id, Navigate, accessToken])
 
+    const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
+
 useEffect(() => {
           // Check if invoiceData.products is an array before using reduce
           if (Array.isArray(invoiceData.products)) {
@@ -65,8 +73,8 @@ useEffect(() => {
    
    
   return (
-    <Box >
-      <Heading>Invoice</Heading>
+   <>  <Box ref={componentRef}>
+      <Heading size={'lg'} fontStyle={'oblique'} color={'blackAlpha.400'} textAlign={'center'}>Invoice</Heading>
       <VStack  spacing={6}>
       <Heading color={'gray.500'} size={'md'}>Invoice No {invoiceData.invoice_number}</Heading>
         <Box>
@@ -163,9 +171,12 @@ useEffect(() => {
             </Tfoot>
           </Table>
         </Box>
+       
       </VStack>
-    
+     
     </Box>
+   <Button bg={'orange.400'} _hover={{bg:'orange.600'}} color={'white'} mt={5} mb={5} ml={{ md:'0', lg:'40%'}} onClick={handlePrint}>Print Invoice</Button>
+    </>
   );
 }
 

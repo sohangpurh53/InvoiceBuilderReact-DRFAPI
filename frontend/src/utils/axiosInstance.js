@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8000/api/';
+const baseURL = 'https://api.invoice-builder.digitaltek.co.in/api/';
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
