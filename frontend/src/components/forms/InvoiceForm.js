@@ -10,6 +10,8 @@ import {
   } from '@chakra-ui/react'
 import axiosInstance from '../../utils/axiosInstance'
 
+
+
 const InvoiceForm = () => {
     const toast = useToast()
     const [invoiceFormData, setInvoiceFormData] = useState({
@@ -20,6 +22,11 @@ const InvoiceForm = () => {
     const [productOption, setProductOption] = useState([])
     const [companyOption, setCompanyOption] = useState([])
     const [customerOption, setCustomerOption] = useState([])
+    
+
+
+
+    
 
 
     useEffect(()=>{
@@ -35,7 +42,6 @@ const InvoiceForm = () => {
         setCompanyOption(company.data)
         setCustomerOption(customer.data)
 
-        
         } catch (error) {
             console.log(error)
         }

@@ -17,10 +17,12 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { SunIcon, MoonIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { useAuth } from './components/context/AuthContext';
 
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [isOpen, setIsOpen] = useState(false);
+  const {accessToken} = useAuth()
 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
@@ -38,6 +40,13 @@ const Header = () => {
         <Spacer />
         <Flex display={{ base: 'none', md: 'flex' }} alignItems="center">
           <Stack direction="row" spacing={4}>
+            {accessToken? <Button as={Link} href="/signout/"_hover={{bg:'green.600', textDecoration:'none'}} bg={'green.300'} color="white">
+              Signout
+            </Button>: <Button as={Link} href="/signin/" _hover={{bg:'blue.600', textDecoration:'none'}} bg={'blue.300'} color="white">
+              SignIn
+            </Button>}
+            
+
             <Link href="/" color="white">
               Home
             </Link>
@@ -51,11 +60,13 @@ const Header = () => {
           </Button>
         </Flex>
         <IconButton
+        mt={3}
           aria-label="Menu"
           icon={<HamburgerIcon />}
           display={{ base: 'flex', md: 'none' }}
           onClick={toggleDrawer}
           variant="outline"
+          color={'white'}
           // colorScheme="whiteAlpha"
         />
       </Flex>
@@ -73,9 +84,12 @@ const Header = () => {
               <Link href="/invoice/all/" color="blue.500">
                 Invoices
               </Link>
-              <Link href="#" color="blue.500">
-                Settings
-              </Link>
+              
+              {accessToken? <Button as={Link} href="/signout/"_hover={{bg:'green.600', textDecoration:'none'}} bg={'green.300'} color="white">
+              Signout
+            </Button>: <Button as={Link} href="/signin/" _hover={{bg:'cyan.600', textDecoration:'none'}} bg={'cyan.300'} color="white">
+              SignIn
+            </Button>}
             </Stack>
             
           </DrawerBody>

@@ -9,6 +9,11 @@ import InvoiceForm from './components/forms/InvoiceForm'
 import InvoiceComponent from './components/Invoice'
 import Homepage from './components/Homepage'
 import ListAllInvoices from './components/ListAllInvoices'
+import SignInComponent from './components/auth/Signin'
+import SignOutComponent from './components/auth/SignOut'
+
+
+
 
 const App = () => {
   return (
@@ -24,6 +29,8 @@ const App = () => {
           <Route path='/invoice/:id/' element={<InvoiceComponent/>}/>
           <Route path='/invoice/all/' element={<ListAllInvoices/>}/>
           <Route path='/' element={<Homepage/>}/>
+          <Route path='/signin/' element={<SignInComponent/>}/>
+          <Route path='/signout/' element={<SignOutComponent/>}/>
       </Routes>
      </Box>
      <Footer/>

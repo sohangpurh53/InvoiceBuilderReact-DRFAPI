@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from api.views import (
+
 CustomerCreateView, ProductCreateView, InvoiceCreateView, CompanyCreateView,
 CustomerListView, ProductListView, InvoiceListView, CompanyListView,SingleInvoiceView,
 CustomerUpdateView, ProductUpdateView, InvoiceUpdateView, CompanyUpdateView,
@@ -8,6 +9,9 @@ CustomerDeleteView, ProductDeleteView, InvoiceDeleteView, CompanyDeleteView
 )
 
 urlpatterns = [
+  #authentication
+ 
+  
   path('customer/create/', CustomerCreateView.as_view() , name='customer-create'),
   path('product/create/', ProductCreateView.as_view() , name='product-create'),
   path('invoice/create/', InvoiceCreateView.as_view() , name='invoice-create'),

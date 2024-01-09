@@ -56,4 +56,9 @@ class ListAllInvoiceSerializer(serializers.ModelSerializer):
         products = obj.product_name.all()  # Retrieve all related products for the invoice
         serialized_products = ProductSerializer(products, many=True).data
         return serialized_products  # Exclude 'invoice_number''
-    
+
+
+#signin
+class SignInSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(style={'input_type': 'password'})

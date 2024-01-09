@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import axiosInstance from '../utils/axiosInstance'
 import { Box, Text, Button, Flex } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from './context/AuthContext'
 
 
 const ListAllInvoices = () => {
     const [allInvoicesDisplay, setAllInvoiceDisplay] = useState([])
+    const Navigate = useNavigate()
+    const {accessToken} = useAuth()
 
     useEffect(()=>{
-      const fetchData = async ()=>{
+      if(accessToken){
+        const fetchData = async ()=>{
         try {
          const invoices = await axiosInstance('invoice/list/')
          setAllInvoiceDisplay(invoices.data) 
@@ -17,7 +21,11 @@ const ListAllInvoices = () => {
         }
       }
       fetchData()
-    }, [])
+      }else{
+        Navigate('/signin/')
+      }
+      
+    }, [Navigate, accessToken])
 
    
   return (

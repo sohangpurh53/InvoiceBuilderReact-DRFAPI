@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Flex, Button, IconButton, HStack, Box, VStack, useDisclosure} from '@chakra-ui/react'
 
 import InvoiceForm from './forms/InvoiceForm'
@@ -8,11 +8,16 @@ import PrdouctForm from './forms/ProductForm'
 import { CloseIcon } from '@chakra-ui/icons';
 import { CgMenuGridO } from "react-icons/cg";
 import ListAllInvoices from './ListAllInvoices'
+import { useAuth } from './context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const Homepage = () => {
   const [activeComponent, setActiveComponent] = useState('InvoiceForm')
   const { isOpen, onToggle } = useDisclosure()
-   
+  const {accessToken} = useAuth() 
+  const Navigate = useNavigate()
+  const [isAuthenticated, setAuthenticated] = useState(false)
+
   const handleClick = (componentName) => {
     setActiveComponent(componentName);
     onToggle()
@@ -35,10 +40,19 @@ const Homepage = () => {
   }
   }
   
+useEffect(()=>{
+if(accessToken){
+      setAuthenticated(true)
+}else{
+      setAuthenticated(false)
+      Navigate('/signin/')
+}
+},[accessToken, Navigate])
 
+console.log(isAuthenticated)
   return (
-   <>
-   <Flex  wrap={'wrap'}>
+  isAuthenticated &&
+      <Flex  wrap={'wrap'}>
    <HStack  p="4"   bg={'gray.300'} color="white" w={{ base: '100%', md: '7.5%', lg:'5%' }}>
             <IconButton
             icon={isOpen ? <CloseIcon />: <CgMenuGridO  />
@@ -72,8 +86,7 @@ const Homepage = () => {
       <Box mt={5} mx={'auto'} flex="1" p={{ base: '4', md: '4' }}>
             {renderComponent()}
           </Box>
-   </Flex>
-   </>
+   </Flex> 
   )
 }
 

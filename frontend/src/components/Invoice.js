@@ -1,16 +1,24 @@
 import { Box, Heading, Table, Thead, Tbody, Tfoot, Tr, Th, Td, VStack, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axiosInstance from '../utils/axiosInstance';
+import { useAuth } from './context/AuthContext';
 
 function InvoiceComponent() {
     const {id} = useParams()
+
     const [invoiceData, setInvoiceData] = useState({products:{},
     customer:{}, 
     company_name:{},
   })
+
   const [totalAmount, setTotalAmount] = useState(0);    
+
+  const Navigate = useNavigate()
+  const {accessToken} = useAuth()
+
     useEffect(()=>{
+      if(accessToken){
         const fetchInvoice = async()=>{
             try {
                 const invoice = await axiosInstance(`invoice/${id}`)
@@ -21,8 +29,12 @@ function InvoiceComponent() {
             }
         }
         fetchInvoice()
+      }else{
+        Navigate('/signin/')
+      }
         
-    },[id])
+        
+    },[id, Navigate, accessToken])
 
 useEffect(() => {
           // Check if invoiceData.products is an array before using reduce
