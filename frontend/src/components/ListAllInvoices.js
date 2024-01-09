@@ -35,7 +35,7 @@ const ListAllInvoices = () => {
        <Text mx={4} fontWeight={'bold'}  >
           {invoice.invoice_number}
         </Text>
-        <Text>
+        <Text textAlign={'justify'}>
           Invoice Of {invoice.customer.customer_name}
         </Text>
         <Button m={2} as={Link}  to={`/invoice/${invoice.id}/`}>View</Button>
