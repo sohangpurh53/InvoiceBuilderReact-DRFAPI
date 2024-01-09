@@ -15,7 +15,7 @@ import axiosInstance from '../../utils/axiosInstance'
 const InvoiceForm = () => {
     const toast = useToast()
     const [invoiceFormData, setInvoiceFormData] = useState({
-        product_name:'',
+        product_name:[],
         company_name:'',
         customer:'',
     })
@@ -52,13 +52,19 @@ const InvoiceForm = () => {
     },[])
 
        
-    const handleChange =  (e) => {
-        const {name, value} = e.target;
-        setInvoiceFormData({
-            ...invoiceFormData,
-            [name]:value
-        })
-    }
+    const handleChange = (e) => {
+      const { name, value, options } = e.target;
+  
+      // For multi-select, create an array of selected options' values
+      const selectedValues = Array.from(options)
+          .filter((option) => option.selected)
+          .map((option) => option.value);
+  
+      setInvoiceFormData({
+          ...invoiceFormData,
+          [name]: name === 'product_name' ? selectedValues : value,
+      });
+  };
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
@@ -72,7 +78,7 @@ const InvoiceForm = () => {
         try {
             const response = await axiosInstance.post('invoice/create/', data,
           {  headers: {
-              'Content-Type': 'multipart/form-data',
+              'Content-Type': 'application/json',
             },}
             );
             if(response.data){
@@ -101,7 +107,7 @@ const InvoiceForm = () => {
         <Heading mx={'auto'} color={'blackAlpha.400'} size={'lg'}> Invoice Form</Heading>
 <FormControl>
   <FormLabel>Product Name</FormLabel>
-  <Select  name='product_name'  value={invoiceFormData.product_name} onChange={handleChange}>
+  <Select size='2xl' multiple  name='product_name'  value={invoiceFormData.product_name} onChange={handleChange}>
   <option default>Select Product</option>
   {productOption.map(product=>(
      <option key={product.id} value={product.id}>{product.product_name}</option>

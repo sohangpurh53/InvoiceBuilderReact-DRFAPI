@@ -12,6 +12,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class InvoiceSerializer(serializers.ModelSerializer):
+    product_name = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all(), many=True)
     class Meta:
         model = invoice
         fields = ['date','id', 'customer', 'company_name', 'product_name']  # Exclude 'invoice_number'

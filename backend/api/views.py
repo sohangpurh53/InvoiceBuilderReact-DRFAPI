@@ -40,7 +40,7 @@ class CustomerListView(ListAPIView):
 class InvoiceListView(ListAPIView):
     queryset = invoice.objects.all()
     serializer_class = ListAllInvoiceSerializer
-    permission_classes = [IsAdminUser]
+    # permission_classes = [IsAdminUser]
 
 class ProductListView(ListAPIView):
     queryset = Product.objects.all()

@@ -49,7 +49,7 @@ if(accessToken){
 }
 },[accessToken, Navigate])
 
-console.log(isAuthenticated)
+
   return (
   isAuthenticated &&
       <Flex  wrap={'wrap'}>
